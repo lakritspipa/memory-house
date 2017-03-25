@@ -35,7 +35,7 @@ class Cards(object):
         return '|' + str(self.getFront()) + '/' + str(self.getBack()) + '|'
     
     def __repr__(self):
-        return 'Cards(%d,%d)' % (self.getFront(), self.getBack())
+        return 'Cards(%s,%s)' % (self.getFront(), self.getBack())
 
 def loadLetters():
     """ Creats a list of the letter in the alphabet """ 
@@ -58,28 +58,29 @@ def randomLetters(alphabet, deckSize):
         select = random.choice(alphabet)
         if select not in randLetters:
             randLetters.append(select)
-            randLetters.append(select)
             count += 1
     random.shuffle(randLetters)
     return randLetters
 
-def createCards(randomLetters, deckSize):
+def createCards(randomLetters):
     """ 
     Returns a deck of game cards in the form of a dictionary.
     deckSize is an int. 
     """
     gameCards = {}
-    for i in range(deckSize):
-        gameCards['card' + str(i)] = Cards(randomLetters[i], 'b')
+    for i in range(len(randomLetters)):
+        gameCards['card' + str(i)] = Cards(randomLetters[i], 'O')
     return gameCards
 
-def printBoard(deckSize):
+def printBoard(gameCards):
     """Prints out game board"""
-    board = []
-    for row in range(deckSize/3):
-        board.append([" O "] * 6)
-    for row in board:
-        print(" ".join(row))
+    #board = []
+    #count = 0
+    for row in gameCards.keys():
+        print(gameCards[row])
+
+#  for row in board:
+#        print("   ".join(row))
 
 
 def loadWords():
